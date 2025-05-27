@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Productos{% endblock %}
+
+{% block customcss %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        .product-img {
+            max-height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card-text {
+            color: #6c757d;
+            font-size: 0.9rem;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .price-tag {
+            font-weight: 700;
+            color: #0d6efd;
+        }
+        .wishlist-btn:hover {
+            color: #dc3545 !important;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">Nuestros Productos</h2>
+    
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <div class="product-img-container">
+                {% if product.imagen %}
+                    <img src="{{ product.imagen.url }}" alt="{{ product.product_name }}" class="product-img">
+                {% else %}
+                    <img src="/static/default_product.png" alt="Imagen no disponible" class="product-img">
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ product.product_name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="price-tag">${{ product.price }}</span>
+                    <small class="text-muted">SKU: {{ product.sku }}</small>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between bg-light">
+                <button class="btn btn-primary btn-sm">
+                    <i class="bi bi-cart-plus"></i> Añadir
+                </button>
+                <a href="{% url 'product:detail' product.id %}" class="btn btn-outline-secondary btn-sm wishlist-btn">
+                    Ver Detalles
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h4 class="text-muted">No hay productos disponibles</h4>
+            <i class="bi bi-emoji-frown" style="font-size: 2rem;"></i>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
