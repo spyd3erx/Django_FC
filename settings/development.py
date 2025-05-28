@@ -10,11 +10,13 @@ ALLOWED_HOSTS.append("*")
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "OPTIONS": {
-            "read_default_file": "database/my.cnf",
-        },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '3dshop',
+        'USER': 'root',
+        'PASSWORD': 'mysecretpassword',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 

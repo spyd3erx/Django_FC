@@ -55,7 +55,7 @@ class ProductImages(models.Model):
     product = models.ForeignKey(
         Products, on_delete=models.CASCADE, related_name="images"
     )
-    image = models.ImageField(upload_to=f"media/products/variaciones")
+    image = models.ImageField(upload_to=f"variaciones")
     color = models.CharField(null=False, max_length=20)
 
     # meta info
