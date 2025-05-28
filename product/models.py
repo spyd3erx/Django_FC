@@ -25,7 +25,7 @@ class Products(models.Model):
         validators=[MinValueValidator(1, message="El stock minimo debe ser de 1")]
     )
     description = models.TextField()
-    imagen = models.ImageField(null=True, blank=True, upload_to="media/products")
+    imagen = models.ImageField(null=True, blank=True, upload_to="products")
     price = models.DecimalField(max_digits=9, decimal_places=2)
     created_at = models.DateField(
         auto_now_add=True
