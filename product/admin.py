@@ -11,7 +11,7 @@ admin.site.index_title = "Panel de Control"
 
 @admin.register(Products)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("product_name", "description", "price",  "stock", "created_at")
+    list_display = ("product_name", "price",  "stock", "created_at", "status")
     ordering = ("-product_name",)
 
 @admin.register(ProductImages)

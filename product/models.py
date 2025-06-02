@@ -60,8 +60,8 @@ class ProductImages(models.Model):
 
     # meta info
     class Meta:
-        verbose_name = "ProductImage"
-        verbose_name_plural = "ProductImages"
+        verbose_name = "Product Image"
+        verbose_name_plural = "Product Images"
 
     def __str__(self) -> str:
         return str(self.product) + "-" + self.color
