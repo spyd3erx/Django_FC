@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "product.apps.ProductConfig",
+    "import_export",
 ]
 
 MIDDLEWARE = [
@@ -113,3 +114,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 from .django_jazzmin import *
+
+#import export settings
+from import_export.formats.base_formats import XLSX,CSV
+EXPORT_FORMATS = [XLSX, CSV]
+IMPORT_FORMATS = [CSV, XLSX]

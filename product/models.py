@@ -64,4 +64,4 @@ class ProductImages(models.Model):
         verbose_name_plural = "Product Images"
 
     def __str__(self) -> str:
-        return str(self.product) + "-" + self.color
+        return str(self.product)
